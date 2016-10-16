@@ -21,40 +21,40 @@ import lombok.Getter;
 
 @SuppressWarnings({ "rawtypes", "unchecked" })
 @RestController
-public abstract class ControllerDefault<T extends ServiceDefault, E extends EntityJpa> {
+public abstract class ControllerAdminDefault<T extends ServiceDefault, E extends EntityJpa> {
 
 	@Autowired
 	@Getter
 	protected T service;
 
 	@RequestMapping(value = StaticURL.ROOT, method = RequestMethod.POST)
-	@PreAuthorize(StaticValue.HAS_ROLE_USER)
+	@PreAuthorize(StaticValue.HAS_ROLE_ADMIN)
 	@ResponseStatus(code = HttpStatus.OK)
 	protected void save(@RequestBody E entity) {
 		getService().save(entity);
 	}
 
 	@RequestMapping(value = StaticURL.FIND_BY_ID, method = RequestMethod.PUT)
-	@PreAuthorize(StaticValue.HAS_ROLE_USER)
+	@PreAuthorize(StaticValue.HAS_ROLE_ADMIN)
 	@ResponseStatus(code = HttpStatus.OK)
 	protected void update(@RequestBody E entity) {
 		getService().save(entity);
 	}
 
 	@RequestMapping(value = StaticURL.ROOT, method = RequestMethod.GET)
-	@PreAuthorize(StaticValue.HAS_ROLE_USER)
+	@PreAuthorize(StaticValue.HAS_ROLE_ADMIN)
 	protected Collection<E> findAll() {
 		return getService().findAll();
 	}
 
 	@RequestMapping(value = StaticURL.FIND_BY_ID, method = RequestMethod.GET)
-	@PreAuthorize(StaticValue.HAS_ROLE_USER)
+	@PreAuthorize(StaticValue.HAS_ROLE_ADMIN)
 	protected E find(@PathVariable String id) {
 		return (E) getService().getRepository().findOne(id);
 	}
 
 	@RequestMapping(value = StaticURL.FIND_BY_ID, method = RequestMethod.DELETE)
-	@PreAuthorize(StaticValue.HAS_ROLE_USER)
+	@PreAuthorize(StaticValue.HAS_ROLE_ADMIN)
 	@ResponseStatus(code = HttpStatus.OK)
 	protected void delete(@PathVariable String id) {
 		getService().getRepository().delete(id);

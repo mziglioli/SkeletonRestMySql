@@ -6,7 +6,11 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum Status {
-	ACTIVE("Active"), UNACTIVE("Unactive"), DELETED("Deleted");
+	//@formatter:off
+	ACTIVE("Active"), 
+	UNACTIVE("Unactive"), 
+	DELETED("Deleted");
+	//@formatter:on
 
 	private String value;
 }

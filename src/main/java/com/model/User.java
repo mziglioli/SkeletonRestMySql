@@ -6,6 +6,8 @@ import java.util.Collection;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +17,7 @@ import javax.persistence.TableGenerator;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -49,17 +52,19 @@ public class User implements EntityJpa, Serializable, UserDetails {
 
 	@Column
 	@NotNull(message = "error.empty.name")
+	@NotEmpty(message = "error.empty.name")
 	private String name;
 
 	@Column
 	@NotNull(message = "error.empty.username")
+	@NotEmpty(message = "error.empty.name")
 	private String username;
 
 	@JsonIgnore
 	@Column
 	private String password;
 
-	@Column
+	@Enumerated(EnumType.STRING)
 	private Status status;
 
 	@Column

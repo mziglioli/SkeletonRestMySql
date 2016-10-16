@@ -59,7 +59,7 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter {
 		response.setContentType("application/json");
 		response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 		response.getOutputStream()
-				.println("{ \"error\": \"error.badCredentials\", \"message\": \"" + failed.getMessage() + "\" }");
+				.println("{ \"error\": \"exception.badCredentials\", \"message\": \"" + failed.getMessage() + "\" }");
 	}
 
 }

@@ -13,7 +13,7 @@ public class StaticValue {
 	public static final String HAS_ROLE_ADMIN = "hasRole('" + ROLE_ADMIN + "')";
 
 	// jwt
-	public static final String JWTS_SECRET = "juca";
+	public static final String JWTS_SECRET = "MY_SECRET_123";
 
 	// COOKIE
 	public static final String COOKIE_XSRF_TOKEN = "XSRF-TOKEN";
@@ -26,8 +26,8 @@ public class StaticValue {
 	public static final String COOKIE_MISSING_NOT_MATCHING = "Missing or non-matching XSRF-TOKEN";
 
 	// exception;
-	public static final String EXCEPTION_USER_NOT_FOUND = "user not found";
-	public static final String EXCEPTION_ACCESS_DENIED = "Missing or non-matching XSRF-TOKEN";
+	public static final String EXCEPTION_USER_NOT_FOUND = "exception.userNotFound";
+	public static final String EXCEPTION_ACCESS_DENIED = "exception.xsfrToken"; // "Missing or non-matching XSRF-TOKEN";
 
 	// log
 	public static final String LOG_SEPARATOR = " -> ";

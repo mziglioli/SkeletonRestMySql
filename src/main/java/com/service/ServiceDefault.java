@@ -76,6 +76,6 @@ public abstract class ServiceDefault<T extends EntityJpa, R extends JpaRepositor
 	}
 
 	protected void log(String msg) {
-		log.info(msg + StaticValue.LOG_SEPARATOR + userService.getAuthenticatedUser().toString());
+		log.info(msg + StaticValue.LOG_SEPARATOR + String.valueOf(userService.getAuthenticatedUser()));
 	}
 }
