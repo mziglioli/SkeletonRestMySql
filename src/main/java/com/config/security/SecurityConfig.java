@@ -16,6 +16,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.csrf.CsrfFilter;
 
 import com.security.SecurityPackage;
+import com.security.exception.AuthenticationEntryPointImpl;
 import com.security.filter.AuthenticationFilter;
 import com.security.filter.CsrfHeaderFilter;
 import com.security.filter.LoginFilter;
@@ -42,14 +43,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		//@formatter:off
-		http.csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+		http
+			.csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 			.and().anonymous()
-			.and().authorizeRequests().antMatchers(StaticURL.PUBLIC_ALL).permitAll().anyRequest().authenticated()
+			.and().authorizeRequests().antMatchers(StaticURL.PUBLIC_ALL, StaticURL.FAVICON_ICO).permitAll().anyRequest().authenticated()
 			.and()
 				.addFilterBefore(new LoginFilter(StaticURL.LOGIN, tokenAuthenticationService(), userDetailsService(), authenticationManager()), UsernamePasswordAuthenticationFilter.class)
 				.addFilterBefore(new AuthenticationFilter(tokenAuthenticationService()), UsernamePasswordAuthenticationFilter.class)
-//					.exceptionHandling().authenticationEntryPoint(new AuthenticationEntryPointImpl())
-//			.and()
+					.exceptionHandling().authenticationEntryPoint(new AuthenticationEntryPointImpl())
+			.and()
 				.addFilterAfter(new CsrfHeaderFilter(), CsrfFilter.class);
 		//@formatter:on
 	}

@@ -4,6 +4,9 @@ public class StaticURL {
 
 	public static final String ROOT = "/";
 
+	// favicon
+	public static final String FAVICON_ICO = "/favicon.ico";
+
 	// PUBLIC
 	public static final String PUBLIC_ALL = "/public/**";
 	public static final String PUBLIC_ROOT = "/public/";
