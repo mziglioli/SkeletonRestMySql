@@ -15,14 +15,12 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.model.EntityJpa;
 import com.repository.RepositoryPackage;
 import com.util.StaticDB;
 
 @Configuration
-@EnableTransactionManagement
 @EnableJpaRepositories(basePackageClasses = { RepositoryPackage.class })
 public class PersistenceConfigTest {
 

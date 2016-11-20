@@ -1,0 +1,6 @@
+LOCK TABLES `category` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `category` VALUES (1,'Category1');
+INSERT INTO `category` VALUES (2,'Category2');
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
