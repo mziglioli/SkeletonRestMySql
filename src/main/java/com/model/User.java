@@ -2,6 +2,7 @@ package com.model;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.HashSet;
 
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -14,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
@@ -22,6 +24,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.model.enuns.Authorities;
 import com.model.enuns.Status;
 import com.util.StaticDB;
 
@@ -71,6 +74,11 @@ public class User implements EntityJpa, Serializable, UserDetails {
 	private String description;
 
 	@ElementCollection(fetch = FetchType.EAGER)
+	@Enumerated(EnumType.STRING)
+	private Collection<Authorities> roles;
+
+	@Transient
+	@JsonIgnore
 	private Collection<UserAuthority> authorities;
 
 	@Override
@@ -87,7 +95,20 @@ public class User implements EntityJpa, Serializable, UserDetails {
 	@Override
 	@JsonIgnore
 	public Collection<UserAuthority> getAuthorities() {
+		if (roles != null) {
+			roles.stream().forEach(r -> {
+				addAuth(r);
+			});
+		}
+
 		return authorities;
+	}
+
+	private void addAuth(Authorities role) {
+		if (authorities == null) {
+			authorities = new HashSet<>();
+		}
+		authorities.add(new UserAuthority(role.getRole()));
 	}
 
 	@Override

@@ -26,7 +26,7 @@ public class UserService extends ServiceDefault<User, UserRepository> {
 			return getUserFromUserLogado();
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new User(null, "", "Anonimous", "", Status.UNACTIVE, "", null);
+			return new User(null, "", "Anonimous", "", Status.UNACTIVE, "", null, null);
 		}
 	}
 

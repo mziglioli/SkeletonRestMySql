@@ -1,4 +1,4 @@
-package com.model;
+package com.security.user;
 
 import java.io.Serializable;
 
@@ -19,9 +19,9 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "authority")
-public class UserAuthority implements GrantedAuthority, Serializable {
+public class Authority implements GrantedAuthority, Serializable {
 
-	private static final long serialVersionUID = -6531931258094044470L;
+	private static final long serialVersionUID = 4026573955643452466L;
 	@NotNull
 	private String authority;
 }

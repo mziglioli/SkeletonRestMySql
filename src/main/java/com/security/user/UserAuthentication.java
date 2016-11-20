@@ -3,9 +3,9 @@ package com.security.user;
 import java.util.Collection;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 
 import com.model.User;
-import com.model.UserAuthority;
 
 public class UserAuthentication implements Authentication {
 
@@ -19,7 +19,7 @@ public class UserAuthentication implements Authentication {
 	}
 
 	@Override
-	public Collection<UserAuthority> getAuthorities() {
+	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return user.getAuthorities();
 	}
 
